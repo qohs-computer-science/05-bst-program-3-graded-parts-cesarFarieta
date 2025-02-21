@@ -3,7 +3,6 @@ import java.lang.Comparable;
 public class BST implements BSTInterface
 {
     private TreeNode root;
-    private TreeNode subroot;
 
 
     public BST(){
@@ -12,28 +11,133 @@ public class BST implements BSTInterface
 
 	public void add(Comparable newVal){
         if(root=null){
-            root= new TreeNode();
+            root= new TreeNode(newVal, null,null);
         }
-        else if(newVal<=root.getValue())
-	        addHelper(newVal,root.getLeft(),root)
-        else 
-	        addHelper(newVal,root.getRight(),root)
+        else if(newVal.compareTo(root.getValue())<=0){
+	        addHelper(newVal,root.getLeft(),root);
+        }else{ 
+	        addHelper(newVal,root.getRight(),root);
+        }
     }
 
     private void addHelper(Comparable newVal,TreeNode child,TreeNode parent)
     {
         if(child==null){
-		    if(val.comparTo(parent.getValue())<=0 )
-			    parent.setLeft(new TreeNode);
-		    else 
-			    parent.setRight(new TreeNode);
+		    if(val.comparTo(parent.getValue())<=0 ){
+			    parent.setLeft(new TreeNode(newVal,null,null));
+            }else {
+			    parent.setRight(new TreeNode(newVal,null,null));
+            }
+        }else{
+            if(val.comparTo(child.getValue())<=0){
+                addHelper(newVal,child.getLeft(),child);
+            }else{ 
+                addHelper(newVal,child.getRight(),child);
+            }    
         }
         
-        else if  (child vs value)
-		    addHelper(left)
-	    else 
-		    addHelper(right)
     }
+
+
+    public int size(){
+        return 0;
+    }
+
+	public boolean isEmpty(){
+        return true;
+    }   
+
+
+	public boolean find(Comparable toFind){
+
+        if(root== null)
+            return false;
+        else{ 
+            if(toFind.compareTo(root)==0)
+                return true ;
+            else if (toFind.compareTo(root)<=0)
+                return findHelper(toFind,root.getLeft());
+            else
+                return findHelper(toFind,root.getRight());
+        }
+
+    }
+
+
+    private boolean findHelper(Comparable newVal,TreeNode child)
+    {
+        if(child == null)
+		    return false;
+	    else 
+            if(val.compareTo(child.getValue())==0)
+                return true; 
+            else if (val.compareTo(child.getValue())<=0)
+                return findHelper(newVal,child.getLeft());
+            else
+                return indHelper(newVal,child.getRight());
+    }
+
+
+	public boolean replace(Comparable old, Comparable toAdd){
+        return true;
+    }
+
+	public boolean delete(Comparable old){
+        return true;
+    }
+
+	public void printInOrder(){
+        if(root!= null){
+            inOrderHelper(root.getLeft());
+            System.out.println(root.getValue());
+            inOrderHelper(root.getRight());
+        }
+    }
+
+    public void inOrderHelper(TreeNode child){
+        if(child!= null){
+            inOrderHelper(child.getLeft());
+            System.out.println(" " + child.getValue());
+            inOrderHelper(child.getRight());
+        }
+    }
+	public void printPreOrder(){
+        if(root!=null){
+            System.out.println(root.getValue());
+            preOrderHelper(root.getLeft());
+            preOrderHelper(root.getRight());
+        }
+    }
+
+	public void preOrderHelper(TreeNode child){
+        if(child!=null){
+            System.out.println(" " + child.getValue());
+            preOrderHelper(child.getLeft());
+            preOrderHelper(child.getRight());
+        }
+    }
+
+
+	public void printPostOrder(){
+        if(root!=null){
+            postOrderHelper(root.getLeft()) ;   
+            postOrderHelper(root.getRight());   
+            System.out.println(root.getValue()); 
+        }
+    }
+
+	public void postOrderHelper(TreeNode child){
+        if(child!=null){
+            postOrderHelper(child.getLeft()) ;   
+            postOrderHelper(child.getRight()) ;  
+            System.out.println(" "+child.getValue()); 
+        }
+    }
+
+
+
+
+    
 
 
 }

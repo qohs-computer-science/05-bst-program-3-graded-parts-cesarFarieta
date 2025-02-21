@@ -5,10 +5,10 @@
  * TODO: Program Description
  */
 
- import java.lang.Comparable;
+import java.lang.Comparable;
 
- public class BSTTester {
-   public static void main(String[] args) {
+public class BSTTester {
+  public static void main(String[] args) {
    
-   }
- }
+  }
+}
