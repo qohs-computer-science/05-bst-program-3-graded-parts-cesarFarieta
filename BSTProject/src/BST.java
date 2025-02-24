@@ -3,15 +3,16 @@ import java.lang.Comparable;
 public class BST implements BSTInterface
 {
     private TreeNode root;
-
+    private int counter;
 
     public BST(){
         root=null;
     }
 
 	public void add(Comparable newVal){
-        if(root=null){
+        if(root==null){
             root= new TreeNode(newVal, null,null);
+            counter++;
         }
         else if(newVal.compareTo(root.getValue())<=0){
 	        addHelper(newVal,root.getLeft(),root);
@@ -23,13 +24,15 @@ public class BST implements BSTInterface
     private void addHelper(Comparable newVal,TreeNode child,TreeNode parent)
     {
         if(child==null){
-		    if(val.comparTo(parent.getValue())<=0 ){
+		    if(newVal.compareTo(parent.getValue())<=0 ){
 			    parent.setLeft(new TreeNode(newVal,null,null));
+                counter++;
             }else {
 			    parent.setRight(new TreeNode(newVal,null,null));
+                counter++;
             }
         }else{
-            if(val.comparTo(child.getValue())<=0){
+            if(newVal.compareTo(child.getValue())<=0){
                 addHelper(newVal,child.getLeft(),child);
             }else{ 
                 addHelper(newVal,child.getRight(),child);
@@ -40,11 +43,14 @@ public class BST implements BSTInterface
 
 
     public int size(){
-        return 0;
+        return counter;
     }
 
 	public boolean isEmpty(){
-        return true;
+        if(root!=null)
+            return false;
+        else
+            return true;
     }   
 
 
@@ -53,9 +59,9 @@ public class BST implements BSTInterface
         if(root== null)
             return false;
         else{ 
-            if(toFind.compareTo(root)==0)
+            if(toFind.compareTo(root.getValue())==0)
                 return true ;
-            else if (toFind.compareTo(root)<=0)
+            else if (toFind.compareTo(root.getValue())<=0)
                 return findHelper(toFind,root.getLeft());
             else
                 return findHelper(toFind,root.getRight());
@@ -69,17 +75,22 @@ public class BST implements BSTInterface
         if(child == null)
 		    return false;
 	    else 
-            if(val.compareTo(child.getValue())==0)
+            if(newVal.compareTo(child.getValue())==0)
                 return true; 
-            else if (val.compareTo(child.getValue())<=0)
+            else if (newVal.compareTo(child.getValue())<=0)
                 return findHelper(newVal,child.getLeft());
             else
-                return indHelper(newVal,child.getRight());
+                return findHelper(newVal,child.getRight());
     }
 
 
 	public boolean replace(Comparable old, Comparable toAdd){
-        return true;
+        //if(root.find(old)== true){
+
+       // }
+        //else{
+            return false;
+        //}
     }
 
 	public boolean delete(Comparable old){
@@ -89,7 +100,7 @@ public class BST implements BSTInterface
 	public void printInOrder(){
         if(root!= null){
             inOrderHelper(root.getLeft());
-            System.out.println(root.getValue());
+            System.out.print(root.getValue());
             inOrderHelper(root.getRight());
         }
     }
@@ -97,13 +108,13 @@ public class BST implements BSTInterface
     public void inOrderHelper(TreeNode child){
         if(child!= null){
             inOrderHelper(child.getLeft());
-            System.out.println(" " + child.getValue());
+            System.out.print(" " + child.getValue());
             inOrderHelper(child.getRight());
         }
     }
 	public void printPreOrder(){
         if(root!=null){
-            System.out.println(root.getValue());
+            System.out.print(root.getValue());
             preOrderHelper(root.getLeft());
             preOrderHelper(root.getRight());
         }
@@ -111,7 +122,7 @@ public class BST implements BSTInterface
 
 	public void preOrderHelper(TreeNode child){
         if(child!=null){
-            System.out.println(" " + child.getValue());
+            System.out.print(" " + child.getValue());
             preOrderHelper(child.getLeft());
             preOrderHelper(child.getRight());
         }
@@ -122,7 +133,7 @@ public class BST implements BSTInterface
         if(root!=null){
             postOrderHelper(root.getLeft()) ;   
             postOrderHelper(root.getRight());   
-            System.out.println(root.getValue()); 
+            System.out.print(root.getValue()); 
         }
     }
 
@@ -130,7 +141,7 @@ public class BST implements BSTInterface
         if(child!=null){
             postOrderHelper(child.getLeft()) ;   
             postOrderHelper(child.getRight()) ;  
-            System.out.println(" "+child.getValue()); 
+            System.out.print(" "+child.getValue()); 
         }
     }
 
