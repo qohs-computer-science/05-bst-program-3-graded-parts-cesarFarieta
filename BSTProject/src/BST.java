@@ -93,9 +93,50 @@ public class BST implements BSTInterface
         //}
     }
 
+
+
+
+
 	public boolean delete(Comparable old){
         return true;
     }
+	private boolean deleteHelper (Comparable val, TreeNode child){
+        return true;
+    }
+	private void deleteSide(TreeNode parent, TreeNode cild, boolean isLeft){
+        return true;
+    }
+	private void deleteRoot(){
+        if(root.getLeft() == null){
+            if(root.getRight() == null){
+                root= null;
+            }
+            else{
+                root= root.getRight();
+            }
+        }
+        else{
+            if(root.getRight() ==null)
+                root=root.getLeft();
+            else{
+                TreeNode temp = root.getLeft();
+                while(temp.getRight() != null){
+                    temp=temp.getRight();
+                }
+                temp.setrRight(rppt.getRight())
+                root= root.getLeft();
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 	public void printInOrder(){
         if(root!= null){
