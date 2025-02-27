@@ -98,8 +98,52 @@ public class BST implements BSTInterface
 
 
 	public boolean delete(Comparable old){
-        return true;
+        if(root==null){
+            return false;
+        }
+        else{
+            if(old.compareTo(root.getValue())==0){
+                deleteRoot();
+                return true;
+            }
+            else{
+                if(old.compareTo(root.getValue())<=0){
+                    if(root.getLeft()==null){
+                        return false;
+                    }
+                    else{
+                        if(old.compareTo(root.getLeft().getVaule())==0){
+                            deleteSide(root,root,getLeft(), true)
+                            return true;
+                        }else{
+                            return deleteHelper(old, root.getLeft());
+
+                        }      
+                    }
+                }
+                else{
+                    if(root.getRight()==null){
+                        return false;
+                    }
+                    else{
+                        if(old.compareTo(root.getRight().gtValue())==0){
+                            deleteSide(root,root.getRigh(),false)
+                            return false
+                        }
+                        else{
+                            reutrn deleteJHelper(old,root.getRight())
+                        }
+                    }
+                }
+            }
+
+        }
     }
+
+
+
+
+
 	private boolean deleteHelper (Comparable val, TreeNode child){
         return true;
     }
@@ -128,15 +172,6 @@ public class BST implements BSTInterface
             }
         }
     }
-
-
-
-
-
-
-
-
-
 
 	public void printInOrder(){
         if(root!= null){
@@ -185,11 +220,5 @@ public class BST implements BSTInterface
             System.out.print(" "+child.getValue()); 
         }
     }
-
-
-
-
-    
-
 
 }
