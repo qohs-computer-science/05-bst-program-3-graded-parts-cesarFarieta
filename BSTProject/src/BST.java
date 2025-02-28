@@ -1,77 +1,83 @@
+// Cesar Farieta 
+// pd 3
 import java.lang.Comparable;
 
 public class BST implements BSTInterface
-{
+{// start class
     private TreeNode root;
     private int counter;
 
-    public BST(){
+    public BST(){// start  BST
         root=null;
-    }
+    }// end BST
 
-	public void add(Comparable newVal){
-        if(root==null){
+	public void add(Comparable newVal){// start add
+        if(root==null){// start if
             root= new TreeNode(newVal, null,null);
             counter++;
-        }
-        else if(newVal.compareTo(root.getValue())<=0){
+        }// end if 
+        else if(newVal.compareTo(root.getValue())<=0){// start else if
 	        addHelper(newVal,root.getLeft(),root);
-        }else{ 
+        }// end if else
+        else{ // start else
 	        addHelper(newVal,root.getRight(),root);
-        }
-    }
+        }// end else
+    }// end add
 
     private void addHelper(Comparable newVal,TreeNode child,TreeNode parent)
-    {
-        if(child==null){
-		    if(newVal.compareTo(parent.getValue())<=0 ){
+    {// start addHelper
+        if(child==null){// start  if
+		    if(newVal.compareTo(parent.getValue())<=0 ){// start  if
 			    parent.setLeft(new TreeNode(newVal,null,null));
                 counter++;
-            }else {
+            }// end if
+            else {// start else
 			    parent.setRight(new TreeNode(newVal,null,null));
                 counter++;
-            }
-        }else{
-            if(newVal.compareTo(child.getValue())<=0){
+            }// end else
+        }// end if 
+        else{// start else
+            if(newVal.compareTo(child.getValue())<=0){// start  if
                 addHelper(newVal,child.getLeft(),child);
-            }else{ 
+            }// end if
+            else{ // start  else
                 addHelper(newVal,child.getRight(),child);
-            }    
-        }
+            }// end else    
+        }// end else  
         
-    }
+    }// end addHelper  
 
 
-    public int size(){
+    public int size(){// start size
         return counter;
-    }
+    }// end size
 
-	public boolean isEmpty(){
+	public boolean isEmpty(){// start empty
         if(root!=null)
             return false;
         else
             return true;
-    }   
+    }  // end empty
 
 
-	public boolean find(Comparable toFind){
+	public boolean find(Comparable toFind){// start find
 
         if(root== null)
             return false;
-        else{ 
+        else{ // start else
             if(toFind.compareTo(root.getValue())==0)
                 return true ;
             else if (toFind.compareTo(root.getValue())<=0)
                 return findHelper(toFind,root.getLeft());
             else
                 return findHelper(toFind,root.getRight());
-        }
+        }// end else
 
-    }
+    }// end find
 
 
     private boolean findHelper(Comparable newVal,TreeNode child)
-    {
+    {// start finderHelper
         if(child == null)
 		    return false;
 	    else 
@@ -81,7 +87,7 @@ public class BST implements BSTInterface
                 return findHelper(newVal,child.getLeft());
             else
                 return findHelper(newVal,child.getRight());
-    }
+    }// end findHelper
 
 
 	public boolean replace(Comparable old, Comparable toAdd){
@@ -97,86 +103,85 @@ public class BST implements BSTInterface
 
 
 
-	public boolean delete(Comparable old){
-        if(root==null){
+	public boolean delete(Comparable old){//  start delete
+        if(root==null){// start if
             return false;
-        }
+        }// end if
         else{
-            if(old.compareTo(root.getValue())==0){
+            if(old.compareTo(root.getValue())==0){// start if
                 deleteRoot();
                 return true;
-            }
-            else{
-                if(old.compareTo(root.getValue())<=0){
-                    if(root.getLeft()==null){
+            }// end if
+            else{// start else
+                if(old.compareTo(root.getValue())<=0){// start if
+                    if(root.getLeft()==null){// start if
                         return false;
-                    }
-                    else{
-                        if(old.compareTo(root.getLeft().getValue())==0){
+                    }// end if
+                    else{// start else
+                        if(old.compareTo(root.getLeft().getValue())==0){// start if
                             deleteSide(root,root.getLeft(), true);
                             return true;
-                        }else{
+                        }// end if
+                        else{// start else
                             return deleteHelper(old, root.getLeft());
 
-                        }      
-                    }
-                }
-                else{
-                    if(root.getRight()==null){
+                        }//end else      
+                    }// end else
+                }// end if
+                else{// start else
+                    if(root.getRight()==null){// start if
                         return false;
-                    }
-                    else{
-                        if(old.compareTo(root.getRight().getValue())==0){
+                    }// end if
+                    else{// start else
+                        if(old.compareTo(root.getRight().getValue())==0){// start if
                             deleteSide(root,root.getRight(),false);
                             return false;
-                        }
-                        else{
+                        }// end if
+                        else{// start else
                             return deleteHelper(old,root.getRight());
-                        }
-                    }
-                }
-            }
+                        }// end else
+                    }// end else
+                }// end else
+            }// end else
 
-        }
-    }
-
-
+        }// end else
+    }// end delete
 
 
 
-	private boolean deleteHelper (Comparable val, TreeNode child){
-        if(val.compareTo(child.getValue())<=0){
-            if(child.getLeft()==null){
+
+
+	private boolean deleteHelper (Comparable val, TreeNode child){// start deleteHelper
+        if(val.compareTo(child.getValue())<=0){// start if
+            if(child.getLeft()==null){// start if
                 return false;
-            }
-            else {
-                if(val.compareTo(child.getLeft().getValue())==0){
-                    deleteSide(child, child, isEmpty());(child,child.getLeft(),true);
+            }// end if
+            else {// start else
+                if(val.compareTo(child.getLeft().getValue())==0){// start if
+                    deleteSide(child,child.getLeft(),true);
                     return true;
-                }
-                else{
-                    return deeteHelper(val,child.getLeft);
-                }
-            }
-        }
-        else{
-            if(child.getRight()==null){
+                }// end if
+                else{// start else
+                    return deleteHelper(val,child.getLeft());
+                }// end else
+            }// end else
+        }// end if 
+        else{// start else
+            if(child.getRight()==null){// start if
                 return false;
-            }
-            else{
-                if(val.compareTo(child.getRight().getValue())==0){
-                    deleteSide(child , child.getright(), false);
+            }// end if
+            else{// start else
+                if(val.compareTo(child.getRight().getValue())==0){// start if
+                    deleteSide(child , child.getRight(), false);
                     return true;
-                }
-                else{
+                }// end if
+                else{// start else
                     return deleteHelper(val,child.getRight());
-                }
-            }
+                }// end  else
+            }// end  else
 
-        }
-    }
-
-
+        }// end  else
+    }// end  deleteHelper
 
 
 
@@ -186,127 +191,135 @@ public class BST implements BSTInterface
 
 
 
-	private void deleteSide(TreeNode parent, TreeNode child, boolean isLeft){
-        if(child.getLeft()==null){
-            if(child.getRight()==null){
-                if(isLeft==true){
+
+
+	private void deleteSide(TreeNode parent, TreeNode child, boolean isLeft){// start deleteSide
+        if(child.getLeft()==null){// start if
+            if(child.getRight()==null){// start if
+                if(isLeft==true){// start if
                     parent.setLeft(null);
-                }
-                else{
+                }// end if
+                else{// start else
                     parent.setRight(null);
-                }
-            }
-            else{
-                if(isLeft==true){
+                }// end  else
+            }// end  if
+            else{// start else
+                if(isLeft==true){// start if
                     parent.setLeft(child.getRight());
-                    chuild.setRight(null);
-                }
-                else{
+                    child.setRight(null);
+                }// end if
+                else{// start else
                     parent.setRight(child.getRight());
                     child.setRight(null);
-                }
-            }        
-        }
-        else{
-            if(child.getRight()==null){
-                if(isLeft==true){
+                }// end  else
+            }// end else     
+        }// end if
+        else{// start else
+            if(child.getRight()==null){// start if
+                if(isLeft==true){// start if
                     parent.setLeft(child.getRight());
                     child.setLeft(null);
-                }
-                else{
+                }// end if
+                else{// start else
                     parent.setRight(child.getRight());
                     child.setLeft(null);
-                }
-            }
-            else{
-                TreeNode temp = child.getleft();
-                while(temp.getRight()!=null){
-                    remp=temp.getRight();
-                }
+                }// end  else
+            }// end if
+            else{// start else
+                TreeNode temp = child.getLeft();
+                while(temp.getRight()!=null){// start while
+                    temp=temp.getRight();
+                }// end while
                 temp.setRight(child.getRight());
-                if(isLeft){
+                if(isLeft){// start if
                     parent.setLeft(child.getLeft());
-                }
-                else{
+                }// end if
+                else{// start else
                     parent.setRight(child.getLeft());
-                }
+                }// end  else
                 child.setLeft(null);
                 child.setRight(null);
 
 
-            }
-        }
-    }
+            }// end  else
+        }// end  else
+    }// end deleteSide
 
-	private void deleteRoot(){
-        if(root.getLeft() == null){
-            if(root.getRight() == null){
+
+
+
+
+
+	private void deleteRoot(){// start deleteRoot
+        if(root.getLeft() == null){// start if
+            if(root.getRight() == null){// start if
                 root= null;
-            }
-            else{
+            }// end if
+            else{// start else
                 root= root.getRight();
-            }
-        }
-        else{
-            if(root.getRight() ==null)
+            }// end else
+        }// end if
+        else{// start else
+            if(root.getRight() ==null){// start if
                 root=root.getLeft();
-            else{
+            }// end if
+            else{// start else
                 TreeNode temp = root.getLeft();
-                while(temp.getRight() != null){
+                while(temp.getRight() != null){// start while
                     temp=temp.getRight();
-                }
+                }// end while
                 temp.setRight(root.getRight());
                 root= root.getLeft();
-            }
-        }
-    }
+            }// end else
+        }// end else
+    }// end deleteRoot
 
-	public void printInOrder(){
-        if(root!= null){
+	public void printInOrder(){// start printInOrder
+        if(root!= null){// start if
             inOrderHelper(root.getLeft());
             System.out.print(root.getValue());
             inOrderHelper(root.getRight());
-        }
-    }
+        }//end if
+    }// end printInOrder
 
-    public void inOrderHelper(TreeNode child){
-        if(child!= null){
+    public void inOrderHelper(TreeNode child){// start inOrderHelper
+        if(child!= null){// start if
             inOrderHelper(child.getLeft());
             System.out.print(" " + child.getValue());
             inOrderHelper(child.getRight());
-        }
-    }
-	public void printPreOrder(){
-        if(root!=null){
+        }//end if
+    }// end inOrderHelper
+	public void printPreOrder(){// start printPreOrder
+        if(root!=null){// start if
             System.out.print(root.getValue());
             preOrderHelper(root.getLeft());
             preOrderHelper(root.getRight());
-        }
-    }
+        }//end if
+    }// end printPreOrder
 
-	public void preOrderHelper(TreeNode child){
-        if(child!=null){
+	public void preOrderHelper(TreeNode child){// start preOrderHelper
+        if(child!=null){// start if
             System.out.print(" " + child.getValue());
             preOrderHelper(child.getLeft());
             preOrderHelper(child.getRight());
-        }
-    }
+        }//end if
+    }// end preOrderHelper
 
 
-	public void printPostOrder(){
-        if(root!=null){
+	public void printPostOrder(){//  start printPostOrder
+        if(root!=null){// start if
             postOrderHelper(root.getLeft()) ;   
             postOrderHelper(root.getRight());   
             System.out.print(root.getValue()); 
-        }
-    }
+        }// end if
+    }//  end printPostOrder
 
-	public void postOrderHelper(TreeNode child){
-        if(child!=null){
+	public void postOrderHelper(TreeNode child){// start postOrderHelper
+        if(child!=null){// start if
             postOrderHelper(child.getLeft()) ;   
             postOrderHelper(child.getRight()) ;  
             System.out.print(" "+child.getValue()); 
-        }
-    }
+        }//end if 
+    }//  end postOrderHelper
 
-}
+}// end class
