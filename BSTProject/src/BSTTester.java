@@ -27,27 +27,34 @@ public class BSTTester {
     System.out.println("In Order: ");
     searchArbol.printInOrder();
     System.out.println("");
+    System.out.println();
 
     System.out.println("Pre Order: ");
     searchArbol.printPreOrder();
     System.out.println("");
+    System.out.println();
 
     System.out.println("Post Order: ");
     searchArbol.printPostOrder();
     System.out.println("");
+    System.out.println();
 
 
     System.out.println("Is it found: ");
     System.out.println(searchArbol.find("A"));
+    System.out.println();
 
     System.out.println("Is it found: ");
     System.out.println(searchArbol.find("B"));
+    System.out.println();
 
     System.out.println("Is it Empty?: ");
     System.out.println(searchArbol.isEmpty());
+    System.out.println();
 
     System.out.println("The Size is:  ");
     System.out.println(searchArbol.size());
+    System.out.println();
 
 
     System.out.println("Delete O: " + searchArbol.delete("O"));
@@ -60,6 +67,7 @@ public class BSTTester {
     System.out.println("Post Order: ");
     searchArbol.printPostOrder();
     System.out.println("");
+    System.out.println();
 
     System.out.println("Delete R: " + searchArbol.delete("R"));
     System.out.println("In Order: ");
@@ -71,6 +79,7 @@ public class BSTTester {
     System.out.println("Post Order: ");
     searchArbol.printPostOrder();
     System.out.println("");
+    System.out.println();
 
     System.out.println("Delete A: " + searchArbol.delete("A"));
     System.out.println("In Order: ");
@@ -83,7 +92,17 @@ public class BSTTester {
     searchArbol.printPostOrder();
     System.out.println("");
 
+    System.out.println();
 
-
+    System.out.println("Replace E with A: " + searchArbol.replace("E","A"));
+    System.out.println("In Order: ");
+    searchArbol.printInOrder();
+    System.out.println("");
+    System.out.println("Pre Order: ");
+    searchArbol.printPreOrder();
+    System.out.println("");
+    System.out.println("Post Order: ");
+    searchArbol.printPostOrder();
+    System.out.println("");
   }
 }

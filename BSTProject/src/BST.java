@@ -90,14 +90,16 @@ public class BST implements BSTInterface
     }// end findHelper
 
 
-	public boolean replace(Comparable old, Comparable toAdd){
-        //if(root.find(old)== true){
-
-       // }
-        //else{
+	public boolean replace(Comparable old, Comparable toAdd){// start replace
+        if(find(old)== true){// start if 
+            delete(old);
+            add(toAdd);
+            return true;
+        }// end if 
+        else{// start else
             return false;
-        //}
-    }
+        }// end else
+    }// end replace
 
 
 
