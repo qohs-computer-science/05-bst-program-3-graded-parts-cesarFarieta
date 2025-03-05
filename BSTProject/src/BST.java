@@ -143,7 +143,7 @@ public class BST implements BSTInterface
                     else{// start else
                         if(old.compareTo(root.getRight().getValue())==0){// start if
                             deleteSide(root,root.getRight(),false);
-                            return false;
+                            return true;
                         }// end if
                         else{// start else
                             return deleteHelper(old,root.getRight());

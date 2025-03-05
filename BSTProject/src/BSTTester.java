@@ -1,10 +1,10 @@
-/*
- * TODO: Name
- * TODO: Date
- * TODO: Class Period
- * TODO: Program Description
- */
-
+// Cesar Farieta 
+// pd 3
+//3/4/2025
+//this program creates a binary search tree and tests different methods. The methods it tests out are add, delete,find,replace, and get size.
+//add, adds an object to the tree to its coreect and sorted location. Delete deletes the object from the tree and shifts eveything, if needed to its 
+//correct location. Find looks for an object in the tree and it returns if it is found or not. Replace takes an object and finds it then replaces it 
+//with the new object, if its not found then it jusst adds it to the search tree. Finally size just returns the size of the biarny search tree.
 import java.lang.Comparable;
 
 public class BSTTester {
